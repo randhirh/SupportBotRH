@@ -26,9 +26,6 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
-//var bot = new builder.UniversalBot(connector);
-
-
 var bot = new builder.UniversalBot(connector, [
     // sets the default or root dialog
     (session, args, next) => {
