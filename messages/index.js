@@ -60,20 +60,12 @@ bot.dialog('/askName', [
 // Level 1 Dialog
 var yesNoIdentify = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('YesConf', (session,args) => {
-<<<<<<< HEAD
     session.send('Thanks for confirming Yes!');
-=======
-    session.send('Thanks for confirming Yes!);
->>>>>>> origin/master
     bot.endDialog('Yes');
 })
 
 .matches('NoConf', (session,args) => {
-<<<<<<< HEAD
     session.send('Thanks for your response!');
-=======
-    session.send('Thanks for your response!);
->>>>>>> origin/master
     bot.endDialog('No');
 })
 
