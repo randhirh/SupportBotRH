@@ -42,7 +42,8 @@ var bot = new builder.UniversalBot(connector, [
         session.send('Hello %s!', session.userData.name);
         session.send('How can I help you today?');
         // Understand intent of Chat Customers and act accordingly
-        session.beginDialog('/problemIdentify');
+        //session.beginDialog('/problemIdentify');
+        session.beginDialog('/yesNoIdentify');
     }
 ]);
 
@@ -225,9 +226,9 @@ bot.dialog('/number', [
     }
 ]);
 
-//bot.dialog('/problemIdentify', problemIdentify);
+bot.dialog('/problemIdentify', problemIdentify);
 
-bot.dialog('/yesNoIdentify', yesNoIdentify);
+//bot.dialog('/yesNoIdentify', yesNoIdentify);
 
 if (useEmulator) {
     var restify = require('restify');
