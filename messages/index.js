@@ -225,7 +225,7 @@ bot.dialog('/number', [
     }
 ]);
 
-bot.dialog('/intents', intents);
+bot.dialog('/problemIdentify', problemIdentify);
 
 if (useEmulator) {
     var restify = require('restify');
