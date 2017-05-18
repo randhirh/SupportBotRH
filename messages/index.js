@@ -39,8 +39,8 @@ var bot = new builder.UniversalBot(connector, [
     },
     (session, results, next) => {
         // this will be executed when the new dialog on the stack completes
-        session.send('Hello %s!', session.userData.name);
-        session.send('How can I help you today?');
+        //session.send('Hello %s!', session.userData.name);
+        //session.send('How can I help you today?');
         // Understand intent of Chat Customers and act accordingly
         //session.beginDialog('/problemIdentify');
         session.beginDialog('/yesNoIdentify');
