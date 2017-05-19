@@ -1,9 +1,3 @@
-/*-----------------------------------------------------------------------------
-This template demonstrates how to use an IntentDialog with a LuisRecognizer to add
-natural language support to a bot.
-For a complete walkthrough of creating this type of bot see the article at
-http://docs.botframework.com/builder/node/guides/understanding-natural-language/
------------------------------------------------------------------------------*/
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
@@ -39,8 +33,8 @@ var bot = new builder.UniversalBot(connector, [
         //session.send('Hello %s!', session.userData.name);
         //session.send('How can I help you today?');
         // Understand intent of Chat Customers and act accordingly
-        //session.beginDialog('/problemIdentify');
-        session.beginDialog('/yesNoIdentify');
+        session.beginDialog('/problemIdentify');
+        //session.beginDialog('/yesNoIdentify');
     }
 ]);
 
@@ -171,7 +165,7 @@ bot.dialog('/restartRouter', [
             case "No":
                 session.replaceDialog('/number');
             case "Some Other Issue":
-                session.send('My Bad! What is the problem you are facing today?');
+                session.send('My Bad! Please try again.');
                 session.replaceDialog('/restartRouter');
                 break;
             default:
