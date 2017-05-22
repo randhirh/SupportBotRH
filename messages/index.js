@@ -1,3 +1,9 @@
+/*-----------------------------------------------------------------------------
+This template demonstrates how to use an IntentDialog with a LuisRecognizer to add
+natural language support to a bot.
+For a complete walkthrough of creating this type of bot see the article at
+http://docs.botframework.com/builder/node/guides/understanding-natural-language/
+-----------------------------------------------------------------------------*/
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
@@ -20,6 +26,9 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 
+//var bot = new builder.UniversalBot(connector);
+
+
 var bot = new builder.UniversalBot(connector, [
     // sets the default or root dialog
     (session, args, next) => {
@@ -30,11 +39,10 @@ var bot = new builder.UniversalBot(connector, [
     },
     (session, results, next) => {
         // this will be executed when the new dialog on the stack completes
-        //session.send('Hello %s!', session.userData.name);
-        //session.send('How can I help you today?');
+        session.send('Hello %s!', session.userData.name);
+        session.send('How can I help you today?');
         // Understand intent of Chat Customers and act accordingly
         session.beginDialog('/problemIdentify');
-        //session.beginDialog('/yesNoIdentify');
     }
 ]);
 
@@ -53,12 +61,12 @@ bot.dialog('/askName', [
 var yesNoIdentify = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('YesConf', (session,args) => {
     session.send('Thanks for confirming Yes!');
-    //bot.endDialog('Yes');
+    bot.endDialog('Yes');
 })
 
 .matches('NoConf', (session,args) => {
     session.send('Thanks for your response!');
-    //bot.endDialog('No');
+    bot.endDialog('No');
 })
 
 .onDefault((session) => {
@@ -165,7 +173,7 @@ bot.dialog('/restartRouter', [
             case "No":
                 session.replaceDialog('/number');
             case "Some Other Issue":
-                session.send('My Bad! Please try again.');
+                session.send('My Bad! What is the problem you are facing today?');
                 session.replaceDialog('/restartRouter');
                 break;
             default:
@@ -218,8 +226,6 @@ bot.dialog('/number', [
 ]);
 
 bot.dialog('/problemIdentify', problemIdentify);
-
-//bot.dialog('/yesNoIdentify', yesNoIdentify);
 
 if (useEmulator) {
     var restify = require('restify');
